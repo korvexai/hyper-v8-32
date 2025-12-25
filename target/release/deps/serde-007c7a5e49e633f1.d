@@ -1,0 +1,14 @@
+E:\KORVEX_SYSTEM_DATA\KORVEX_ENGINE_V10000\hyper-v8-32\target\release\deps\serde-007c7a5e49e633f1.d: C:\Users\chifo\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\lib.rs C:\Users\chifo\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\integer128.rs C:\Users\chifo\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\mod.rs C:\Users\chifo\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\de.rs C:\Users\chifo\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\ser.rs E:\KORVEX_SYSTEM_DATA\KORVEX_ENGINE_V10000\hyper-v8-32\target\release\build\serde-0904142beeccba7d\out/private.rs
+
+E:\KORVEX_SYSTEM_DATA\KORVEX_ENGINE_V10000\hyper-v8-32\target\release\deps\libserde-007c7a5e49e633f1.rlib: C:\Users\chifo\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\lib.rs C:\Users\chifo\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\integer128.rs C:\Users\chifo\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\mod.rs C:\Users\chifo\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\de.rs C:\Users\chifo\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\ser.rs E:\KORVEX_SYSTEM_DATA\KORVEX_ENGINE_V10000\hyper-v8-32\target\release\build\serde-0904142beeccba7d\out/private.rs
+
+E:\KORVEX_SYSTEM_DATA\KORVEX_ENGINE_V10000\hyper-v8-32\target\release\deps\libserde-007c7a5e49e633f1.rmeta: C:\Users\chifo\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\lib.rs C:\Users\chifo\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\integer128.rs C:\Users\chifo\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\mod.rs C:\Users\chifo\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\de.rs C:\Users\chifo\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\ser.rs E:\KORVEX_SYSTEM_DATA\KORVEX_ENGINE_V10000\hyper-v8-32\target\release\build\serde-0904142beeccba7d\out/private.rs
+
+C:\Users\chifo\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\lib.rs:
+C:\Users\chifo\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\integer128.rs:
+C:\Users\chifo\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\mod.rs:
+C:\Users\chifo\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\de.rs:
+C:\Users\chifo\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\ser.rs:
+E:\KORVEX_SYSTEM_DATA\KORVEX_ENGINE_V10000\hyper-v8-32\target\release\build\serde-0904142beeccba7d\out/private.rs:
+
+# env-dep:OUT_DIR=E:\\KORVEX_SYSTEM_DATA\\KORVEX_ENGINE_V10000\\hyper-v8-32\\target\\release\\build\\serde-0904142beeccba7d\\out

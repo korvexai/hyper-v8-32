@@ -1,11 +1,4 @@
-﻿pub struct LicenseKey { pub valid: bool }
-pub struct AbuseKey { pub level: u8 }
-
-pub struct HyperCore {
-    pub identity_key: u64,
-    pub license_key: LicenseKey,
-    pub abuse_key: AbuseKey,
-}
+// Copyright (c) 2025 Korvex. All rights reserved.
 
 #[inline(always)]
 pub fn watermark(id: u64, identity_key: u64) -> u64 {

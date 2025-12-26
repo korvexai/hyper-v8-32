@@ -13,11 +13,14 @@ Building, wrapping, embedding, or providing services on top of this
 engine without a commercial license is strictly prohibited.
 
 See the LICENSE file for full terms.
+<<<<<<< HEAD
 
 Contact: contact@korvex.ai
 
 Personal, non-commercial use is permitted.
 Commercial use, modification, or redistribution requires
 a commercial license from Korvex.
+=======
+>>>>>>> 6180a30 (Apply IP-protected Hyper V8-32 build (security + tracking + license))
 
 Contact: contact@korvex.ai

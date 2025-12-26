@@ -1,4 +1,16 @@
+<<<<<<< HEAD
 ﻿// Copyright (c) 2025 Korvex. All rights reserved.
+=======
+﻿pub struct LicenseKey { pub valid: bool }
+pub struct AbuseKey { pub level: u8 }
+
+pub struct HyperCore {
+    pub identity_key: u64,
+    pub license_key: LicenseKey,
+    pub abuse_key: AbuseKey,
+}
+
+>>>>>>> 1ad1e67b4068093d27a71af1c46d79a3f1867238
 #[inline(always)]
 pub fn watermark(id: u64, identity_key: u64) -> u64 {
     let mut x = id ^ identity_key;

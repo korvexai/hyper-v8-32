@@ -13,5 +13,14 @@ Building, wrapping, embedding, or providing services on top of this
 engine without a commercial license is strictly prohibited.
 
 See the LICENSE file for full terms.
+<<<<<<< HEAD
+=======
+
+Contact: contact@korvex.ai
+
+Personal, non-commercial use is permitted.
+Commercial use, modification, or redistribution requires
+a commercial license from Korvex.
+>>>>>>> 1ad1e67b4068093d27a71af1c46d79a3f1867238
 
 Contact: contact@korvex.ai

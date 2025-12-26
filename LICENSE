@@ -1,21 +1,19 @@
-Korvex Source-Available License (Personal Use Only)
+Personal Use License
 
-Copyright (c) 2025 Korvex
+“Personal Use” is strictly limited to use by a natural person
+(physical individual) acting in a private, non-commercial,
+non-professional capacity.
 
-Permission is hereby granted to view and run this software
-for personal, non-commercial use only.
+Personal Use does NOT include any form of use by:
+- any legal entity (company, corporation, startup, NGO, institution),
+- any organization or group,
+- any professional or business activity,
+- any internal company use, testing, benchmarking, study, or evaluation,
+- any use related to products, services, infrastructure, or operations.
 
-The following are explicitly NOT permitted without a separate
-commercial license agreement from Korvex:
+Any use by a legal entity, regardless of size, purpose, profit status,
+or internal-only usage, is considered Commercial Use and requires
+a paid commercial license from Korvex.
 
-- Modification of the source code
-- Redistribution of the source code or binaries
-- Use in commercial products or services
-- Use in SaaS, hosted, or cloud environments
-- Integration into proprietary or open-source software
-- Sale, sublicensing, or monetization of this software
-
-This software is provided "AS IS", without warranty of any kind.
-Korvex shall not be liable for any damages arising from its use.
-
-For commercial licensing, contact: contact@korvex.ai
+Building, wrapping, embedding, integrating, or providing services
+on top of this engine without a commercial license is strictly prohibited.

@@ -1,7 +1,16 @@
+// Copyright (c) 2025 Korvex. All rights reserved.
+// Project: Hyper V8-32 | Forensic IP Protection Active
+
+mod security;
+mod tracking;
+
 use std::sync::atomic::{AtomicU64, Ordering};
 use std::sync::Arc;
 use std::time::Instant;
 use actix_web::{web, App, HttpServer, HttpResponse, Responder};
+
+use crate::security::*;
+use crate::tracking::TRACKING_HASH;
 
 // ================================================================
 // 1. CELULA QUANTUM – UNITATE ATOMICĂ ALINIATĂ LA CACHE LINE
@@ -24,7 +33,7 @@ impl QuantumCell {
 struct HyperCore {
     id: u8,
     grid: Vec<QuantumCell>,
-    mask: usize, // putere a lui 2 - 1 → modulo rapid cu AND
+    mask: usize, 
 }
 
 impl HyperCore {
@@ -43,7 +52,7 @@ impl HyperCore {
         let idx = cell_idx & self.mask;
         let cell = &self.grid[idx];
 
-        // 🔒 SCUT LATENȚĂ: Dacă e ocupat, renunțăm imediat — zero așteptare
+        // 🔒 SCUT LATENȚĂ: Dacă e ocupat, renunțăm imediat
         if cell.state.load(Ordering::Relaxed) != 0 {
             return false;
         }
@@ -79,16 +88,31 @@ impl SupremeEngine {
 
     #[inline(always)]
     fn inject(&self, request_id: u64) -> bool {
-        // 🔒 SCUT ANTI-CRAPARE 1: Verificare de bază
+        // 🛡️ INTEGRARE PROTECȚIE IP KORVEX
+        // 1. Aplicăm Watermark-ul Digital (Amprenta)
+        let wm = watermark(request_id, TRACKING_HASH);
+
+        // 2. Aplicăm Bias-ul de Licență (true = Uz Personal activat)
+        let lb = license_bias(true);
+
+        // 3. Verificăm Anti-Abuzul (0 = Normal)
+        let ab = abuse_bias(0);
+
+        // 🔒 SCUT ANTI-CRAPARE: Verificare de bază
         if self.valves.is_empty() {
             return false;
         }
 
-        let hash = request_id.wrapping_mul(0x9E3779B1);
-        let valve_idx = (hash as usize) & 31;        // 0..31
-        let cell_idx = (hash as usize) & 0x1FFFFFFF; // ~500M
+        // HASH PROTEJAT: Cine nu are security.rs nu poate replica această distribuție
+        let hash = request_id
+            .wrapping_mul(0x9E3779B1 ^ wm)
+            ^ lb
+            ^ ab;
 
-        // 🔒 SCUT ANTI-CRAPARE 2: Verificare dinamică
+        let valve_idx = (hash as usize) & 31;
+        let cell_idx = (hash as usize) & 0x1FFFFFFF;
+
+        // 🔒 SCUT ANTI-CRAPARE: Verificare dinamică
         debug_assert!(valve_idx < self.valves.len());
         if valve_idx >= self.valves.len() {
             return false;
@@ -99,7 +123,7 @@ impl SupremeEngine {
 }
 
 // ================================================================
-// 4. CÂRLIGUL – API PUBLIC (FĂRĂ MODIFICĂRI)
+// 4. CÂRLIGUL – API PUBLIC (INJECTARE PROTEJATĂ)
 // ================================================================
 async fn hook(engine: web::Data<Arc<SupremeEngine>>) -> impl Responder {
     let start = Instant::now();
@@ -117,12 +141,12 @@ async fn hook(engine: web::Data<Arc<SupremeEngine>>) -> impl Responder {
 }
 
 // ================================================================
-// 5. PORNIRE – FĂRĂ MODIFICĂRI
+// 5. PORNIRE – MOTOR HYPER V10000
 // ================================================================
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    println!("🏁 MOTOR HYPER V8-32 – 8 Pistons | 32 Valves | 16B Logical Cells");
-    println!("🛡️ Anti-crash baraj activ | Zero spin | Zero UB | Zero delir");
+    println!("🏁 MOTOR HYPER V8-32 [PROTECTED] – 8 Pistons | 32 Valves");
+    println!("🛡️ IP Protection: TRACKING + WATERMARK + BIAS ACTIVE");
 
     let engine = Arc::new(SupremeEngine::new());
 

@@ -1,0 +1,56 @@
+﻿Personal Use License
+Copyright © 2026 Korvex. All rights reserved.
+
+This software is proprietary and source-available.
+This license is enforceable under applicable copyright law.
+
+1. DEFINITIONS
+
+"Personal Use" is strictly limited to use by a natural person
+(physical individual) acting solely in a private, non-commercial,
+non-professional capacity.
+
+"Commercial Use" includes, but is not limited to, any use by:
+- any legal entity (company, corporation, startup, NGO, institution),
+- any organization, association, or group,
+- any professional, business, or revenue-generating activity,
+- any internal company use, testing, benchmarking, study, evaluation, or research,
+- any use related to products, services, infrastructure, platforms, or operations,
+- any use performed on behalf of, or for the benefit of, a legal entity.
+
+2. GRANT OF RIGHTS
+
+Permission is granted to use this software solely for Personal Use,
+as defined above.
+
+No other rights are granted, whether explicitly or implicitly.
+
+3. RESTRICTIONS
+
+The following actions are strictly prohibited without a valid
+commercial license issued by Korvex:
+
+- Commercial Use of any kind,
+- internal company testing or evaluation,
+- benchmarking or performance analysis within an organization,
+- building, wrapping, embedding, or integrating this software
+  into any product, service, or system,
+- offering this software or derivative works as a service,
+- redistribution, sublicensing, or relicensing.
+
+4. OWNERSHIP
+
+This software and all associated intellectual property rights
+remain the exclusive property of Korvex.
+
+Unauthorized use constitutes copyright infringement.
+
+5. COMMERCIAL LICENSING
+
+Any Commercial Use requires a separate paid commercial license.
+For licensing inquiries, contact: contact@korvex.ai
+
+6. NO WARRANTY
+
+This software is provided "AS IS", without warranty of any kind,
+express or implied.

@@ -1,4 +1,4 @@
-// Copyright (c) 2025 Korvex. All rights reserved.
+// © 2026 Korvex. Personal-use only. Commercial use prohibited.
 // Project: Hyper V8-32 | Profile: Production-Ready-Final
 // Status: Zero-Delirium | Optimized Atomic ID | Forensic IP Active
 
@@ -85,7 +85,7 @@ impl SupremeEngine {
 
     #[inline(always)]
     fn inject(&self, request_id: u64) -> bool {
-        // 🛡️ SECURITY INSTANCE (Actualizat la SecurityContext)
+        // 🛡️ SECURITY INSTANCE (Utilizând SecurityContext definit în security.rs)
         let core_info = crate::security::SecurityContext {
             identity_key: TRACKING_HASH,
             license_key: LicenseKey { valid: true }, 
@@ -141,7 +141,7 @@ async fn hook(engine: web::Data<Arc<SupremeEngine>>) -> impl Responder {
 // ================================================================
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    println!("🏁 HYPER V8-32 ENGINE [REFINED BUILD] – Korvex IP Active");
+    println!("🏁 HYPER V8-32 ENGINE [ULTIMATE BUILD] – Korvex IP Active");
     println!("🛡️ Memory shield active: Max 256MB RAM");
 
     let engine = Arc::new(SupremeEngine::new(131_072));

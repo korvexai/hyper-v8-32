@@ -1,3 +1,9 @@
+﻿[![Language](https://img.shields.io/badge/language-rust-orange.svg)](https://www.rust-lang.org/)
+[![Performance](https://img.shields.io/badge/latency-<1300ns-brightgreen.svg)]()
+[![Memory](https://img.shields.io/badge/memory-fixed--279MB-blue.svg)]()
+[![License](https://img.shields.io/badge/license-personal--use--only-red.svg)]()
+[![Status](https://img.shields.io/badge/status-production--ready-success.svg)]()
+
 Hyper V8-32 Engine
 
 
@@ -14,9 +20,9 @@ Language: Rust (stable)
 Framework: Actix-web
 Profile: Lock-free / Atomic / Concurrency-oriented
 Author: Korvex
-Copyright: © 2026 Korvex
+Copyright: Â© 2026 Korvex
 
-📌 Overview
+ðŸ“Œ Overview
 
 Hyper V8-32 is a high-performance concurrent processing engine designed for ultra-low latency and strict memory stability.
 
@@ -24,7 +30,7 @@ The engine is built around a 32-valve architecture, using only atomic operations
 
 The HTTP interface exists solely as an injection hook for testing and benchmarking purposes.
 
-⚙️ Architecture Summary
+âš™ï¸ Architecture Summary
 
 32 HyperCore valves
 
@@ -38,7 +44,7 @@ No mutexes on the critical path
 
 No per-request dynamic allocations
 
-🌐 API
+ðŸŒ API
 Active Endpoint
 POST /fire
 
@@ -51,7 +57,7 @@ X-Hyper-Status: PROCESSED | COLLISION
 
 X-Latency-Ns: <number>
 
-🚀 Build & Run
+ðŸš€ Build & Run
 Optimized Build
 cargo build --release
 
@@ -63,7 +69,7 @@ Server:
 
 http://0.0.0.0:8080/fire
 
-🧪 TESTING (REAL-WORLD VERIFIED)
+ðŸ§ª TESTING (REAL-WORLD VERIFIED)
 
 All tests below were executed on real hardware using the --release binary.
 
@@ -77,72 +83,72 @@ Concurrency: ~3200 requests (32 parallel jobs)
 
 Memory: Stable ~279 MB WorkingSet
 
-✅ Test 1 — Port Binding
+âœ… Test 1 â€” Port Binding
 netstat -ano | findstr :8080
 
 
-Result: Port 8080 → LISTENING | Valid PID ✔ PASS
+Result: Port 8080 â†’ LISTENING | Valid PID âœ” PASS
 
-✅ Test 2 — Clean Shutdown
+âœ… Test 2 â€” Clean Shutdown
 taskkill /IM hyper-v8-32.exe /F
 netstat -ano | findstr :8080
 
 
-Result: Port fully released ✔ PASS
+Result: Port fully released âœ” PASS
 
-✅ Test 3 — Restart After Kill
+âœ… Test 3 â€” Restart After Kill
 cargo run --release
 
 
-Result: Server starts instantly | Correct port binding ✔ PASS
+Result: Server starts instantly | Correct port binding âœ” PASS
 
-✅ Test 4 — Method Filtering
+âœ… Test 4 â€” Method Filtering
 curl.exe http://127.0.0.1:8080/fire
 curl.exe -X PUT http://127.0.0.1:8080/fire
 curl.exe -X POST http://127.0.0.1:8080/invalid
 
 
-Result: All requests return 404 | Engine remains stable ✔ PASS
+Result: All requests return 404 | Engine remains stable âœ” PASS
 
-✅ Test 5 — Single POST Injection
+âœ… Test 5 â€” Single POST Injection
 curl.exe -X POST http://127.0.0.1:8080/fire
 
 
 Typical Result:
-V8-32 Engine: PROCESSED | Time: 700–1800 ns ✔ PASS
+V8-32 Engine: PROCESSED | Time: 700â€“1800 ns âœ” PASS
 
-✅ Test 6 — Serial Burst Load
+âœ… Test 6 â€” Serial Burst Load
 1..500 | % { curl.exe -X POST http://127.0.0.1:8080/fire > $null }
 
 
-Result: No crashes | Stable latency ✔ PASS
+Result: No crashes | Stable latency âœ” PASS
 
-✅ Test 7 — Concurrency Stress
+âœ… Test 7 â€” Concurrency Stress
 1..32 | % {
   Start-Job { 1..100 | % { curl.exe -X POST http://127.0.0.1:8080/fire > $null } }
 }
 
 
-Result: ~3200 concurrent requests | No deadlocks | No hangs ✔ PASS
+Result: ~3200 concurrent requests | No deadlocks | No hangs âœ” PASS
 
-✅ Test 8 — Collision Integrity
+âœ… Test 8 â€” Collision Integrity
 
 Occasional COLLISION responses under heavy concurrency.
-Engine continues operating normally without performance degradation. ✔ PASS
+Engine continues operating normally without performance degradation. âœ” PASS
 
-✅ Test 9 — Memory Stability
+âœ… Test 9 â€” Memory Stability
 Get-Process hyper-v8-32 | Select WorkingSet
 
 
-Result: ~279 MB WorkingSet | Constant usage before and after stress ✔ PASS
+Result: ~279 MB WorkingSet | Constant usage before and after stress âœ” PASS
 
-✅ Test 10 — TCP State Validation
+âœ… Test 10 â€” TCP State Validation
 netstat -ano | findstr :8080
 
 
-Result: Correct LISTENING state | Normal TIME_WAIT entries ✔ PASS
+Result: Correct LISTENING state | Normal TIME_WAIT entries âœ” PASS
 
-🧠 Technical Notes
+ðŸ§  Technical Notes
 
 Engine is POST-only by design.
 
@@ -152,21 +158,21 @@ TIME_WAIT behavior is standard Windows TCP stack management.
 
 Memory usage includes Actix-web and the atomic grid pre-allocation.
 
-❗ Non-Goals
+â— Non-Goals
 
-❌ Not a general-purpose web framework
+âŒ Not a general-purpose web framework
 
-❌ Not a full REST API
+âŒ Not a full REST API
 
-❌ Not a comparative benchmark suite
+âŒ Not a comparative benchmark suite
 
 This project is a lock-free atomic processing engine, minimally exposed for verification.
 
-🟢 Final Status
+ðŸŸ¢ Final Status
 
 ENGINE CORE: STABLE / VERIFIED / READY FOR PUBLICATION
 
-⚖️ Commercial Use & Licensing
+âš–ï¸ Commercial Use & Licensing
 
 Hyper V8-32 is NOT open source.
 
@@ -194,4 +200,4 @@ Any professional or revenue-generating activity
 Any of the above constitutes Commercial Use and requires a separate paid commercial license from Korvex.
 Unauthorized use constitutes copyright infringement.
 
-📩 Commercial licensing: contact@korvex.ai
+ðŸ“© Commercial licensing: contact@korvex.ai

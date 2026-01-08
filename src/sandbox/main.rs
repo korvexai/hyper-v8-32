@@ -1,6 +1,6 @@
 // Copyright (c) 2025 Korvex. All rights reserved.
 // Project: Hyper V8-32 | Profile: Production-Ready-Final
-// Status: Zero-Delirium | Auto-Limited RAM | Forensic IP Active
+// Status: Zero-Delir | Auto-Limited RAM | Forensic IP Active
 
 mod security;
 mod tracking;
@@ -14,7 +14,7 @@ use crate::security::*;
 use crate::tracking::TRACKING_HASH;
 
 // ================================================================
-// 1. QUANTUM CELL – ATOMIC UNIT ALIGNED TO CACHE LINE
+// 1. CELULA QUANTUM – ALINIATĂ LA 64 BYTES (PREVINE FALSE SHARING)
 // ================================================================
 #[repr(align(64))]
 struct QuantumCell {
@@ -28,7 +28,7 @@ impl QuantumCell {
 }
 
 // ================================================================
-// 2. HYPERCORE – REPRESENTS A PROCESSING VALVE
+// 2. HYPERCORE – UNITATEA DE PROCESARE (VALVA)
 // ================================================================
 struct HyperCore {
     grid: Vec<QuantumCell>,
@@ -37,6 +37,8 @@ struct HyperCore {
 
 impl HyperCore {
     fn new(cap_limit: usize) -> Self {
+        // LIMITĂ DEFENSIVĂ: Forțăm maxim 128k celule per valvă (~8MB/valvă)
+        // Rezultă un consum total de RAM garantat sub 300MB.
         let cap = cap_limit.min(131_072).next_power_of_two();
         let grid = (0..cap).map(|_| QuantumCell::new()).collect();
         Self {
@@ -50,12 +52,17 @@ impl HyperCore {
         let idx = cell_idx & self.mask;
         let cell = &self.grid[idx];
 
+        // SCUT LATENȚĂ: Verificăm starea rapid
         if cell.state.load(Ordering::Acquire) != 0 {
             return false;
         }
 
+        // Lock-free CAS: (payload << 1 | 1) marchează celula ca ocupată
         if cell.state.compare_exchange(0, (payload << 1) | 1, Ordering::Acquire, Ordering::Relaxed).is_ok() {
-            let _work = payload.wrapping_add(0x42);
+            // --- LOGICĂ MOTOR (Placeholder pentru procesare date) ---
+            let _ = payload.wrapping_mul(0x517CC1B7);
+            
+            // Eliberare atomică
             cell.state.store(0, Ordering::Release);
             true
         } else {
@@ -65,7 +72,7 @@ impl HyperCore {
 }
 
 // ================================================================
-// 3. SUPREME ENGINE – 8 PISTONS / 32 VALVES ARCHITECTURE
+// 3. MOTORUL SUPREME – ARHITECTURA 8 PISTOANE / 32 VALVE
 // ================================================================
 struct SupremeEngine {
     valves: Vec<HyperCore>,
@@ -82,17 +89,12 @@ impl SupremeEngine {
 
     #[inline(always)]
     fn inject(&self, request_id: u64) -> bool {
-        // 🛡️ INTEGRATED SECURITY INSTANCE (Fixes dead_code warnings)
-        let core_info = crate::security::HyperCore {
-            identity_key: TRACKING_HASH,
-            license_key: LicenseKey { valid: true }, 
-            abuse_key: AbuseKey { level: 0 },
-        };
+        // 🛡️ INTEGRARE IP KORVEX
+        let wm = watermark(request_id, TRACKING_HASH);
+        let lb = license_bias(true); 
+        let ab = abuse_bias(0);
 
-        let wm = watermark(request_id, core_info.identity_key);
-        let lb = license_bias(core_info.license_key.valid); 
-        let ab = abuse_bias(core_info.abuse_key.level);
-
+        // HASHING DISTRIBUIT: Biții jos pentru Valvă, biții sus pentru Celulă
         let hash = request_id
             .wrapping_mul(0x9E3779B1 ^ wm)
             .wrapping_add(lb) ^ ab;
@@ -109,7 +111,7 @@ impl SupremeEngine {
 }
 
 // ================================================================
-// 4. PUBLIC API (PROTECTED INJECTION)
+// 4. API PUBLIC (INJECTARE PROTEJATĂ)
 // ================================================================
 async fn hook(engine: web::Data<Arc<SupremeEngine>>) -> impl Responder {
     let start = Instant::now();
@@ -130,16 +132,16 @@ async fn hook(engine: web::Data<Arc<SupremeEngine>>) -> impl Responder {
 }
 
 // ================================================================
-// 5. ENGINE STARTUP
+// 5. PORNIRE MOTOR
 // ================================================================
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    println!("🏁 HYPER V8-32 ENGINE [FINAL BUILD] – Korvex IP Active");
-    println!("🛡️ Memory shield active: Max 256MB RAM");
+    println!("🏁 MOTOR HYPER V8-32 [FINAL BUILD] – Korvex IP Active");
+    println!("🛡️ Scut memorie activ: Max 256MB RAM");
 
     let engine = Arc::new(SupremeEngine::new(131_072));
 
-    println!("📡 Endpoint active at: http://0.0.0.0:8080/fire");
+    println!("📡 Endpoint activ pe: http://0.0.0.0:8080/fire");
 
     HttpServer::new(move || {
         App::new()

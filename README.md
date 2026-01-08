@@ -33,27 +33,21 @@ The HTTP interface exists solely as an **injection hook** for testing and benchm
 ## 🌐 API
 
 ### Active Endpoint
+```http
 POST /fire
-
-shell
+Response
+text
 Copy code
-
-### Response
 V8-32 Engine: PROCESSED | Time: <ns>
+Headers
+X-Hyper-Status: PROCESSED | COLLISION
 
-yaml
+X-Latency-Ns: <number>
+
+🚀 Build & Run
+Optimized Build
+bash
 Copy code
-
-### Headers
-- `X-Hyper-Status: PROCESSED | COLLISION`
-- `X-Latency-Ns: <number>`
-
----
-
-## 🚀 Build & Run
-
-### Optimized Build
-```bash
 cargo build --release
 Run
 bash
@@ -108,7 +102,11 @@ powershell
 Copy code
 curl.exe -X POST http://127.0.0.1:8080/fire
 Typical Result:
-V8-32 Engine: PROCESSED | Time: 700–1800 ns ✔ PASS
+
+yaml
+Copy code
+V8-32 Engine: PROCESSED | Time: 700–1800 ns
+✔ PASS
 
 ✅ Test 6 — Serial Burst Load
 powershell
@@ -141,13 +139,13 @@ netstat -ano | findstr :8080
 Result: Correct LISTENING state | Normal TIME_WAIT entries ✔ PASS
 
 🧠 Technical Notes
-Engine is POST-only by design.
+Engine is POST-only by design
 
-Reported latencies are in-engine, excluding TCP RTT.
+Reported latencies are in-engine, excluding TCP RTT
 
-TIME_WAIT behavior is standard Windows TCP stack management.
+TIME_WAIT behavior is standard Windows TCP stack management
 
-Memory usage includes Actix-web and atomic grid pre-allocation.
+Memory usage includes Actix-web and atomic grid pre-allocation
 
 ❗ Non-Goals
 ❌ Not a general-purpose web framework
@@ -176,12 +174,12 @@ Reading and studying the source code
 What is NOT allowed without a commercial license
 Any use by a company, startup, or organization
 
-Internal testing, benchmarking, evaluation, or research
+Internal testing, benchmarking, or evaluation
 
-Integration into products, services, platforms, or infrastructure
+Integration into products, services, or infrastructure
 
 Any professional or revenue-generating activity
 
-Any of the above constitutes Commercial Use and requires a separate paid commercial license.
+Any of the above constitutes Commercial Use and requires a separate paid license.
 
 📩 Commercial licensing: contact@korvex.ai

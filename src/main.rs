@@ -1,6 +1,6 @@
 // Copyright (c) 2025 Korvex. All rights reserved.
 // Project: Hyper V8-32 | Profile: Production-Ready-Final
-// Status: Zero-Delirium | Auto-Limited RAM | Forensic IP Active
+// Status: Zero-Delirium | Optimized Atomic ID | Forensic IP Active
 
 mod security;
 mod tracking;
@@ -12,6 +12,9 @@ use actix_web::{web, App, HttpServer, HttpResponse, Responder};
 
 use crate::security::*;
 use crate::tracking::TRACKING_HASH;
+
+// Global atomic counter pentru generare ID-uri unice cu overhead minim
+static REQ_COUNTER: AtomicU64 = AtomicU64::new(1);
 
 // ================================================================
 // 1. QUANTUM CELL – ATOMIC UNIT ALIGNED TO CACHE LINE
@@ -82,8 +85,8 @@ impl SupremeEngine {
 
     #[inline(always)]
     fn inject(&self, request_id: u64) -> bool {
-        // 🛡️ INTEGRATED SECURITY INSTANCE (Fixes dead_code warnings)
-        let core_info = crate::security::HyperCore {
+        // 🛡️ SECURITY INSTANCE (Actualizat la SecurityContext)
+        let core_info = crate::security::SecurityContext {
             identity_key: TRACKING_HASH,
             license_key: LicenseKey { valid: true }, 
             abuse_key: AbuseKey { level: 0 },
@@ -113,10 +116,14 @@ impl SupremeEngine {
 // ================================================================
 async fn hook(engine: web::Data<Arc<SupremeEngine>>) -> impl Responder {
     let start = Instant::now();
-    let req_id = std::time::SystemTime::now()
+    
+    // Generare ID robustă: Atomic Counter XOR low bits din Timestamp
+    let counter = REQ_COUNTER.fetch_add(1, Ordering::Relaxed);
+    let ts_low = std::time::SystemTime::now()
         .duration_since(std::time::UNIX_EPOCH)
         .unwrap_or_default()
         .as_nanos() as u64;
+    let req_id = counter ^ ts_low;
 
     let success = engine.inject(req_id);
     let latency = start.elapsed().as_nanos();
@@ -134,7 +141,7 @@ async fn hook(engine: web::Data<Arc<SupremeEngine>>) -> impl Responder {
 // ================================================================
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    println!("🏁 HYPER V8-32 ENGINE [FINAL BUILD] – Korvex IP Active");
+    println!("🏁 HYPER V8-32 ENGINE [REFINED BUILD] – Korvex IP Active");
     println!("🛡️ Memory shield active: Max 256MB RAM");
 
     let engine = Arc::new(SupremeEngine::new(131_072));

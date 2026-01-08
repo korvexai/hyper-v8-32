@@ -1,7 +1,17 @@
-﻿pub struct LicenseKey { pub valid: bool }
-pub struct AbuseKey { pub level: u8 }
+﻿// Copyright (c) 2026 Korvex. All rights reserved.
+// Profile: Security-Definitions-Final
 
-pub struct HyperCore {
+pub struct LicenseKey {
+    pub valid: bool,
+}
+
+pub struct AbuseKey {
+    pub level: u8,
+}
+
+/// Redenumit din HyperCore în SecurityContext pentru a evita 
+/// conflictele de nume cu motorul principal.
+pub struct SecurityContext {
     pub identity_key: u64,
     pub license_key: LicenseKey,
     pub abuse_key: AbuseKey,

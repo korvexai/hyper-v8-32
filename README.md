@@ -1,9 +1,3 @@
-﻿[![Language](https://img.shields.io/badge/language-rust-orange.svg)](https://www.rust-lang.org/)
-[![Performance](https://img.shields.io/badge/latency-<1300ns-brightgreen.svg)]()
-[![Memory](https://img.shields.io/badge/memory-fixed--279MB-blue.svg)]()
-[![License](https://img.shields.io/badge/license-personal--use--only-red.svg)]()
-[![Status](https://img.shields.io/badge/status-production--ready-success.svg)]()
-
 Hyper V8-32 Engine
 Status: Production-Ready (Core Engine)
 
@@ -15,16 +9,16 @@ Profile: Lock-free / Atomic / Concurrency-oriented
 
 Author: Korvex
 
-Copyright: Â© 2026 Korvex
+Copyright: © 2026 Korvex
 
-ðŸ“Œ Overview
+📌 Overview
 Hyper V8-32 is a high-performance concurrent processing engine designed for ultra-low latency and strict memory stability.
 
 The engine is built around a 32-valve architecture, using only atomic operations and lock-free hot paths.
 
 The HTTP interface exists solely as an injection hook for testing and benchmarking purposes.
 
-âš™ï¸ Architecture Summary
+⚙️ Architecture Summary
 32 HyperCore valves
 
 Deterministic hash-based routing
@@ -37,7 +31,7 @@ No mutexes on the critical path
 
 No per-request dynamic allocations
 
-ðŸŒ API
+🌐 API
 Active Endpoint
 POST /fire
 
@@ -49,7 +43,7 @@ X-Hyper-Status: PROCESSED | COLLISION
 
 X-Latency-Ns: <number>
 
-ðŸš€ Build & Run
+🚀 Build & Run
 Optimized Build
 Bash
 
@@ -60,7 +54,7 @@ Bash
 cargo run --release
 Server: http://0.0.0.0:8080/fire
 
-ðŸ§ª TESTING (REAL-WORLD VERIFIED)
+🧪 TESTING (REAL-WORLD VERIFIED)
 All tests below were executed on hardware, using the --release binary.
 
 Test Environment Summary
@@ -73,71 +67,71 @@ Concurrency: Up to ~3200 requests (32 parallel jobs)
 
 Memory: Stable ~279 MB WorkingSet
 
-âœ… Test 1 â€” Port Binding
+✅ Test 1 — Port Binding
 PowerShell
 
 netstat -ano | findstr :8080
-Result: Port 8080 â†’ LISTENING | Valid PID âœ” PASS
+Result: Port 8080 → LISTENING | Valid PID ✔ PASS
 
-âœ… Test 2 â€” Clean Shutdown
+✅ Test 2 — Clean Shutdown
 PowerShell
 
 taskkill /IM hyper-v8-32.exe /F
 netstat -ano | findstr :8080
-Result: Port fully released âœ” PASS
+Result: Port fully released ✔ PASS
 
-âœ… Test 3 â€” Restart After Kill
+✅ Test 3 — Restart After Kill
 PowerShell
 
 cargo run --release
-Result: Server starts instantly | Correct port binding âœ” PASS
+Result: Server starts instantly | Correct port binding ✔ PASS
 
-âœ… Test 4 â€” Method Filtering
+✅ Test 4 — Method Filtering
 PowerShell
 
 curl.exe http://127.0.0.1:8080/fire
 curl.exe -X PUT http://127.0.0.1:8080/fire
 curl.exe -X POST http://127.0.0.1:8080/invalid
-Result: All requests return 404 | Engine remains stable âœ” PASS
+Result: All requests return 404 | Engine remains stable ✔ PASS
 
-âœ… Test 5 â€” Single POST Injection
+✅ Test 5 — Single POST Injection
 PowerShell
 
 curl.exe -X POST http://127.0.0.1:8080/fire
-Typical Result: V8-32 Engine: PROCESSED | Time: 700â€“1800 ns âœ” PASS
+Typical Result: V8-32 Engine: PROCESSED | Time: 700–1800 ns ✔ PASS
 
-âœ… Test 6 â€” Serial Burst Load
+✅ Test 6 — Serial Burst Load
 PowerShell
 
 1..500 | % { curl.exe -X POST http://127.0.0.1:8080/fire > $null }
-Result: No crashes | Stable latency âœ” PASS
+Result: No crashes | Stable latency ✔ PASS
 
-âœ… Test 7 â€” Concurrency Stress
+✅ Test 7 — Concurrency Stress
 PowerShell
 
 1..32 | % {
   Start-Job { 1..100 | % { curl.exe -X POST http://127.0.0.1:8080/fire > $null } }
 }
-Result: ~3200 concurrent requests | No deadlocks | No hangs âœ” PASS
+Result: ~3200 concurrent requests | No deadlocks | No hangs ✔ PASS
 
-âœ… Test 8 â€” Collision Integrity
+✅ Test 8 — Collision Integrity
 Occasional COLLISION responses under heavy concurrency.
 
-Engine continues operating normally without performance degradation. âœ” PASS
+Engine continues operating normally without performance degradation. ✔ PASS
 
-âœ… Test 9 â€” Memory Stability
+✅ Test 9 — Memory Stability
 PowerShell
 
 Get-Process hyper-v8-32 | Select WorkingSet
-Result: ~279 MB WorkingSet | Constant usage before and after stress âœ” PASS
+Result: ~279 MB WorkingSet | Constant usage before and after stress ✔ PASS
 
-âœ… Test 10 â€” TCP State Validation
+✅ Test 10 — TCP State Validation
 PowerShell
 
 netstat -ano | findstr :8080
-Result: Correct LISTENING state | Normal TIME_WAIT entries âœ” PASS
+Result: Correct LISTENING state | Normal TIME_WAIT entries ✔ PASS
 
-ðŸ§  Technical Notes
+🧠 Technical Notes
 Engine is POST-only by design.
 
 Reported latencies are in-engine, excluding TCP RTT.
@@ -146,19 +140,19 @@ TIME_WAIT behavior is standard Windows TCP stack management.
 
 Memory usage includes Actix-web and the atomic grid pre-allocation.
 
-â— Non-Goals
-âŒ Not a general-purpose web framework.
+❗ Non-Goals
+❌ Not a general-purpose web framework.
 
-âŒ Not a full REST API.
+❌ Not a full REST API.
 
-âŒ Not a comparative benchmark suite.
+❌ Not a comparative benchmark suite.
 
 This project is a lock-free atomic processing engine, minimally exposed for verification.
 
-ðŸŸ¢ Final Status
+🟢 Final Status
 ENGINE CORE: STABLE / VERIFIED / READY FOR PUBLICATION
 
-âš–ï¸ Commercial Use & Licensing
+⚖️ Commercial Use & Licensing
 Hyper V8-32 is NOT open source.
 
 This project is source-available and licensed strictly for Personal Use by private individuals, as defined in the LICENSE file.

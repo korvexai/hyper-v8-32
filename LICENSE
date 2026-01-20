@@ -1,19 +1,44 @@
-﻿Personal Use License
+﻿⚙️ KORVEX HYPER-V8-32: COMMERCIAL & PERSONAL LICENSE
+Copyright (c) 2026 Korvex | All rights reserved.
 
-"Personal Use" is strictly limited to use by a natural person
-(physical individual) acting in a private, non-commercial,
-non-professional capacity.
+1. PERSONAL USE (RESTRICTED) "Personal Use" is strictly limited to use by a natural person acting in a private, non-commercial capacity.
 
-Personal Use does NOT include any form of use by:
-- any legal entity (company, corporation, startup, NGO, institution),
-- any organization or group,
-- any professional or business activity,
-- any internal company use, testing, benchmarking, study, or evaluation,
-- any use related to products, services, infrastructure, or operations.
+Allowed: Home research, private study, non-distributed experimentation.
 
-Any use by a legal entity, regardless of size, purpose, profit status,
-or internal-only usage, is considered Commercial Use and requires
-a paid commercial license from Korvex.
+Prohibited: Any use by a legal entity, startup, NGO, or for professional benchmarking.
 
-Building, wrapping, embedding, or providing services on top of this
-engine without a commercial license is strictly prohibited.
+2. COMMERCIAL USE (REQUIRED) Any use by a legal entity or for revenue-generating activities is considered Commercial Use and requires a paid license from the KORVEX AI Technology Hub.
+
+3. COMMERCIAL PRICING & TIERS
+
+STANDARD LICENSE ($199/Year): Single production instance, atomic-grid access, and standard HWID activation.
+
+GOLD PLATINUM ($499/Year): Multi-instance deployment, SaaS/API rights, and hardware-specific optimization.
+
+ENTERPRISE SUITE ($1000/Year): Unlimited cluster deployment, 24/7 priority support, and custom valve tuning.
+
+4. ACTIVATION & SECURITY
+
+HWID Lock: Commercial versions are cryptographically locked to the server's Machine ID (HWID).
+
+License Key: A valid license.key must be present in the root directory to unlock industrial performance.
+
+Forensic Tracking: Proprietary DNA tracking is embedded in all commercial binaries to prevent leaks.
+
+5. DIGITAL DELIVERY & REFUNDS
+
+Final Sale: Due to the nature of digital software and HWID locking, all sales are final.
+
+No Refunds: No refunds will be issued once a license key is generated for a specific Machine ID.
+
+6. PROHIBITED ACTIONS
+
+✘ Reselling the Hyper-V8-32 core as a standalone product.
+
+✘ Bypassing or removing the HWID/Atomic-Lock mechanisms.
+
+✘ Redistributing binaries to third parties without an Enterprise License.
+
+7. CONTACT & LICENSING For commercial acquisition and HWID activation: Official Portal: github.com/sponsors/korvexai Email: contactkorvex.ai@gmail.com
+
+© 2026 Korvex | High-Performance Atomic Infrastructure

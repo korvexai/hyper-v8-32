@@ -8,6 +8,8 @@ mod tracking;
 use std::sync::atomic::{AtomicU64, Ordering};
 use std::sync::Arc;
 use std::time::Instant;
+use std::fs;
+use sha2::{Sha256, Digest};
 use actix_web::{web, App, HttpServer, HttpResponse, Responder};
 
 use crate::security::*;
@@ -15,6 +17,35 @@ use crate::tracking::TRACKING_HASH;
 
 // Global atomic counter pentru generare ID-uri unice cu overhead minim
 static REQ_COUNTER: AtomicU64 = AtomicU64::new(1);
+
+// ================================================================
+// 0. HARD-LOCK SECURITY CHECK (Pre-Startup)
+// ================================================================
+fn verify_security() -> bool {
+    let hwid = machine_uid::get().unwrap_or_else(|_| "UNKNOWN_ID".to_string());
+    let tier = "GOLD"; 
+    let secret_salt = "KORVEX_MASTER_SECRET_KEY_2026";
+    let license_path = "license.key";
+
+    if !std::path::Path::new(license_path).exists() {
+        println!("\n❌ EROARE CRITICĂ: Licența lipsește!");
+        println!("HWID-ul dumneavoastră: {}", hwid);
+        return false;
+    }
+
+    let stored_key = fs::read_to_string(license_path).unwrap_or_default().trim().to_string();
+    let mut hasher = Sha256::new();
+    hasher.update(format!("{}-{}-{}", hwid, tier, secret_salt));
+    let expected_key = format!("{:x}", hasher.finalize());
+
+    // --- LOGICA DE DEBUG ADAUGATĂ ---
+    if stored_key != expected_key {
+        println!("\n❌ EROARE: Licență invalidă!");
+        return false;
+    }
+
+    true
+}
 
 // ================================================================
 // 1. QUANTUM CELL – ATOMIC UNIT ALIGNED TO CACHE LINE
@@ -85,7 +116,6 @@ impl SupremeEngine {
 
     #[inline(always)]
     fn inject(&self, request_id: u64) -> bool {
-        // 🛡️ SECURITY INSTANCE (Utilizând SecurityContext definit în security.rs)
         let core_info = crate::security::SecurityContext {
             identity_key: TRACKING_HASH,
             license_key: LicenseKey { valid: true }, 
@@ -117,7 +147,6 @@ impl SupremeEngine {
 async fn hook(engine: web::Data<Arc<SupremeEngine>>) -> impl Responder {
     let start = Instant::now();
     
-    // Generare ID robustă: Atomic Counter XOR low bits din Timestamp
     let counter = REQ_COUNTER.fetch_add(1, Ordering::Relaxed);
     let ts_low = std::time::SystemTime::now()
         .duration_since(std::time::UNIX_EPOCH)
@@ -141,8 +170,13 @@ async fn hook(engine: web::Data<Arc<SupremeEngine>>) -> impl Responder {
 // ================================================================
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+    // 🛡️ VERIFICARE SECURITATE HARD-LOCK
+    if !verify_security() {
+        std::process::exit(1);
+    }
+
     println!("🏁 HYPER V8-32 ENGINE [ULTIMATE BUILD] – Korvex IP Active");
-    println!("🛡️ Memory shield active: Max 256MB RAM");
+    println!("✅ Security Verified: Commercial License Active");
 
     let engine = Arc::new(SupremeEngine::new(131_072));
 

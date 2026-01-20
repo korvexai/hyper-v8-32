@@ -1,185 +1,72 @@
-# Hyper V8-32 Engine
+⚙️ Hyper V8-32 Engine [GOLD]
 
-**Status:** Production-Ready (Core Engine)  
-**Language:** Rust (stable)  
-**Framework:** Actix-web  
-**Profile:** Lock-free / Atomic / Concurrency-oriented  
-**Author:** Korvex  
-**Copyright:** © 2026 Korvex  
+High-performance concurrent processing engine designed for ultra-low latency and strict memory stability.
+Built around a 32-valve architecture using lock-free atomic operations.
+Part of the KORVEX AI Technology Hub.
 
----
+⚡ Certified Performance (v1.0.0-GOLD)
+Metric	Result	Status
+Architecture	32 HyperCore Valves	  ✅ Verified
+Hot Path	Mutex-free / Atomic-only	✅ Optimized
+Latency	700ns – 1800ns (In-engine)	✅ Ultra-Low
+Memory	~279 MB Constant WorkingSet	✅ Stable
+💎 Commercial Licensing (Universal Gateway)
 
-## 📌 Overview
+The Hyper V8-32 core is available for industrial integration.
 
-**Hyper V8-32** is a high-performance concurrent processing engine designed for ultra-low latency and strict memory stability.
+🛡️ BASIC LICENSE — $199 / Year
 
-The engine is built around a **32-valve architecture**, using only atomic operations and lock-free hot paths.
+Single production instance
 
-The HTTP interface exists solely as an **injection hook** for testing and benchmarking purposes.
+Standard Atomic-Grid access
 
----
+Email support
 
-## ⚙️ Architecture Summary
+👑 GOLD PLATINUM — $499 / Year
 
-- **32 HyperCore valves**
-- Deterministic hash-based routing
-- Atomic units using `AtomicU64`
-- Cache-line aligned (64 bytes)
-- No mutexes on the critical path
-- No per-request dynamic allocations
+Full Infrastructure Rights
 
----
+Multi-threaded optimization
 
-## 🌐 API
+SaaS/API deployment rights
 
-### Active Endpoint
-```http
-POST /fire
-Response
-text
-Copy code
-V8-32 Engine: PROCESSED | Time: <ns>
-Headers
-X-Hyper-Status: PROCESSED | COLLISION
+🏢 ENTERPRISE SUITE — $1000 / Year
 
-X-Latency-Ns: <number>
+Unlimited global deployment
 
-🚀 Build & Run
-Optimized Build
-bash
-Copy code
-cargo build --release
-Run
-bash
-Copy code
-cargo run --release
-Server:
+Custom hardware-specific valve tuning
 
-arduino
-Copy code
-http://0.0.0.0:8080/fire
-🧪 TESTING (REAL-WORLD VERIFIED)
-All tests below were executed on real hardware using the --release binary.
+24/7 dedicated support
 
-Test Environment Summary
-OS: Windows x86_64
+🔑 Activation Process
 
-Build: cargo build --release
+Hardware ID – Run the engine to generate your unique Machine ID (HWID).
 
-Concurrency: ~3200 requests (32 parallel jobs)
+Payment – Complete the transaction via the Official Sponsorship Page.
 
-Memory: Stable ~279 MB WorkingSet
+Delivery – Send your HWID and project name (Hyper-V8) to:
+contactkorvex.ai@gmail.com
 
-✅ Test 1 — Port Binding
-powershell
-Copy code
-netstat -ano | findstr :8080
-Result: Port 8080 → LISTENING | Valid PID ✔ PASS
+License – You will receive your license.key within 24 hours.
 
-✅ Test 2 — Clean Shutdown
-powershell
-Copy code
-taskkill /IM hyper-v8-32.exe /F
-netstat -ano | findstr :8080
-Result: Port fully released ✔ PASS
+⚙️ Architecture Summary
 
-✅ Test 3 — Restart After Kill
-powershell
-Copy code
-cargo run --release
-Result: Server starts instantly | Correct port binding ✔ PASS
+32 HyperCore valves – Deterministic hash-based routing for parallel processing
 
-✅ Test 4 — Method Filtering
-powershell
-Copy code
-curl.exe http://127.0.0.1:8080/fire
-curl.exe -X PUT http://127.0.0.1:8080/fire
-curl.exe -X POST http://127.0.0.1:8080/invalid
-Result: All requests return 404 | Engine remains stable ✔ PASS
+Atomic Units – Logic built with AtomicU64 for maximum thread safety and speed
 
-✅ Test 5 — Single POST Injection
-powershell
-Copy code
-curl.exe -X POST http://127.0.0.1:8080/fire
-Typical Result:
+Cache Alignment – 64-byte aligned structures to prevent CPU false sharing
 
-yaml
-Copy code
-V8-32 Engine: PROCESSED | Time: 700–1800 ns
-✔ PASS
+Zero-Dynamic Allocation – No per-request allocations on the critical path
 
-✅ Test 6 — Serial Burst Load
-powershell
-Copy code
-1..500 | % { curl.exe -X POST http://127.0.0.1:8080/fire > $null }
-Result: No crashes | Stable latency ✔ PASS
+🧪 Verified Production Tests
 
-✅ Test 7 — Concurrency Stress
-powershell
-Copy code
-1..32 | % {
-  Start-Job { 1..100 | % { curl.exe -X POST http://127.0.0.1:8080/fire > $null } }
-}
-Result: ~3200 concurrent requests | No deadlocks | No hangs ✔ PASS
+Concurrency Stress – ~3200 concurrent requests (32 parallel jobs) without deadlocks
 
-✅ Test 8 — Collision Integrity
-Occasional COLLISION responses under heavy concurrency.
-Engine continues operating normally without performance degradation. ✔ PASS
+Memory Stability – Constant ~279 MB WorkingSet under heavy load
 
-✅ Test 9 — Memory Stability
-powershell
-Copy code
-Get-Process hyper-v8-32 | Select WorkingSet
-Result: ~279 MB WorkingSet | Constant usage ✔ PASS
+Method Filtering – Strict POST-only enforcement for high-security injection points
 
-✅ Test 10 — TCP State Validation
-powershell
-Copy code
-netstat -ano | findstr :8080
-Result: Correct LISTENING state | Normal TIME_WAIT entries ✔ PASS
+Port Binding – Instant LISTENING state recovery on restart
 
-🧠 Technical Notes
-Engine is POST-only by design
-
-Reported latencies are in-engine, excluding TCP RTT
-
-TIME_WAIT behavior is standard Windows TCP stack management
-
-Memory usage includes Actix-web and atomic grid pre-allocation
-
-❗ Non-Goals
-❌ Not a general-purpose web framework
-
-❌ Not a full REST API
-
-❌ Not a comparative benchmark suite
-
-This project is a lock-free atomic processing engine, minimally exposed for verification.
-
-🟢 Final Status
-ENGINE CORE: STABLE / VERIFIED / READY FOR PUBLICATION
-
-⚖️ Commercial Use & Licensing
-Hyper V8-32 is NOT open source.
-
-This project is source-available and licensed strictly for Personal Use by private individuals, as defined in the LICENSE file.
-
-What is allowed
-Personal, private experimentation by a natural person
-
-Non-commercial learning and research at home
-
-Reading and studying the source code
-
-What is NOT allowed without a commercial license
-Any use by a company, startup, or organization
-
-Internal testing, benchmarking, or evaluation
-
-Integration into products, services, or infrastructure
-
-Any professional or revenue-generating activity
-
-Any of the above constitutes Commercial Use and requires a separate paid license.
-
-📩 Commercial licensing: contact@korvex.ai
+© 2026 KORVEX AI | Lock-free Atomic Processing Infrastructure

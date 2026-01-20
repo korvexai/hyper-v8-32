@@ -9,11 +9,14 @@ license = "Proprietary"
 [dependencies]
 # Web framework required for the /fire API
 actix-web = "4"
+# ADAUGĂM DOAR ACESTE DOUĂ LINII:
+sha2 = "0.10"
+machine-uid = "0.3"
 
 [profile.release]
 # Aggressive optimizations for "bare metal" speed
-opt-level = 3           # Maximum code optimization level
-lto = true              # Link Time Optimization (analyzes entire project for speed)
-codegen-units = 1       # Reduce parallel compilation to allow global optimizations
-panic = 'abort'         # Remove "unwinding" overhead on critical errors
-strip = true            # Remove debug symbols for a smaller and faster binary
+opt-level = 3            # Maximum code optimization level
+lto = true               # Link Time Optimization (analyzes entire project for speed)
+codegen-units = 1        # Reduce parallel compilation to allow global optimizations
+panic = 'abort'          # Remove "unwinding" overhead on critical errors
+strip = true             # Remove debug symbols for a smaller and faster binary

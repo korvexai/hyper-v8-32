@@ -1,0 +1,9 @@
+[package]
+name = "hyper-v8-32"
+version = "0.1.0"
+edition = "2021"
+description = "Lock-free concurrent admission engine (best-effort, fail-fast)"
+license = "Proprietary"
+
+[dependencies]
+actix-web = "4"
